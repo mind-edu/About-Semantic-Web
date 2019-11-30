@@ -1,10 +1,14 @@
 # 关于 ```语义Web``` 资料整理
 
-- 知识图谱技术的前身
+- [知识图谱标准化白皮书(2019)](http://www.cesi.ac.cn/201909/5589.html)
 
-[CodeWisdom平台API知识图谱服务系统全新上线了](https://mp.weixin.qq.com/s/8ReWM8AcN170LA8o6zjrsw)
+- [CodeWisdom平台API知识图谱服务系统全新上线了](https://mp.weixin.qq.com/s/8ReWM8AcN170LA8o6zjrsw)
 
-- [Protege](https://protege.stanford.edu/)
+在 ```./assests/pdf/```有相应的pdf文件
+
+- [Protege](https://protege.stanford.edu/) 本体编辑器
+
+
 
 ## 运行说明
 
