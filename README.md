@@ -19,7 +19,7 @@ fuseki-server
 
 ### 手机类别本体
 
-项目来源于 : [https://gitee.com/Semantic-Web/Phone-Recommendation-based-on-Mobile-Ontology](https://gitee.com/Semantic-Web/Phone-Recommendation-based-on-Mobile-Ontology)
+项目来源于 : [https://github.com/ruchiraPeiris/Ontology](https://github.com/ruchiraPeiris/Ontology)
 
 导入```assests/owl/MobileClassesComplete.owl```文件
 
