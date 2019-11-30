@@ -13,3 +13,17 @@
 fuseki-server
 ```
 
+```
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX math:<http://www.semanticweb.org/chengboya/ontologies/%s#>
+
+SELECT ?resource ?quality_value
+
+WHERE {
+    math:函数基本求导法则 math:resource ?resource.?resource math:quality_is ?quality_value
+}
+ORDER BY DESC(?quality_value)
+LIMIT 10
+```
