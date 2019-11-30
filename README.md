@@ -13,17 +13,30 @@
 fuseki-server
 ```
 
-```
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX math:<http://www.semanticweb.org/chengboya/ontologies/%s#>
+通过在浏览器端加载数据文件，然后进行```SPARQL```查询操作
 
-SELECT ?resource ?quality_value
+## 案例解析
 
-WHERE {
-    math:函数基本求导法则 math:resource ?resource.?resource math:quality_is ?quality_value
-}
-ORDER BY DESC(?quality_value)
-LIMIT 10
-```
+### 手机类别本体
+
+项目来源于 : [https://gitee.com/Semantic-Web/Phone-Recommendation-based-on-Mobile-Ontology](https://gitee.com/Semantic-Web/Phone-Recommendation-based-on-Mobile-Ontology)
+
+导入```assests/owl/MobileClassesComplete.owl```文件
+
+在 ```手机类别本体.md```中有详细步骤
+
+## 电影知识图谱本体
+
+项目来源于 : [https://github.com/SimmerChan/KG-demo-for-movie](https://github.com/SimmerChan/KG-demo-for-movie)
+
+导入```assests/owl/kg_demo_movie_mapping.owl```文件
+
+在 ```电影知识图谱本体.md```中有详细步骤
+
+## 高等数学知识本体
+
+项目来源于 : [https://github.com/MiaCheng08/Education-Recommendation-Based-On-Ontology](https://github.com/MiaCheng08/Education-Recommendation-Based-On-Ontology)
+
+导入```assests/owl/math.owl```等三个文件
+
+在 ```高等数学知识本体.md```中有详细步骤
