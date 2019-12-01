@@ -1,0 +1,6 @@
+<https://w3id.org/people/bsletten>
+        a       <http://xmlns.com/foaf/0.1/Person> ;
+        <http://xmlns.com/foaf/0.1/birthday>
+                "05-26" ;
+        <http://xmlns.com/foaf/0.1/name>
+                "Brian Sletten" .

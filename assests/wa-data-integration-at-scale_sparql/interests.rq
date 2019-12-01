@@ -1,0 +1,10 @@
+PREFIX ex: <http://example.com/ns/>
+prefix foaf: <http://xmlns.com/foaf/0.1/>
+
+select ?interest where {
+  ?s foaf:interest ?interest ;
+     foaf:knows ?magician .
+     
+  ?magician a ex:Magician ;
+     foaf:name "Michael Carducci" .
+}

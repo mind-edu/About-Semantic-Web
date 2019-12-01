@@ -1,0 +1,4 @@
+<https://w3id.org/people/bsletten> <http://xmlns.com/foaf/0.1/birthday> "05-26" .
+<https://w3id.org/people/bsletten> <http://xmlns.com/foaf/0.1/name> "Brian Sletten" .
+<https://w3id.org/people/bsletten> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Person> .
+

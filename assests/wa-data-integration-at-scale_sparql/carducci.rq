@@ -1,0 +1,3 @@
+SELECT ?p ?o 
+WHERE 
+{ <https://w3id.org/people/mcarducci> ?p ?o }

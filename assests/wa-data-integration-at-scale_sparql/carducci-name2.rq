@@ -1,0 +1,7 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+SELECT ?p ?o
+WHERE 
+{ 
+   ?s foaf:name "Michael Carducci";
+      ?p ?o
+}

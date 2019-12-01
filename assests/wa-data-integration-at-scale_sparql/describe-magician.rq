@@ -1,0 +1,6 @@
+PREFIX ex: <http://example.com/ns/>
+
+DESCRIBE ?s
+WHERE {
+  ?s a ex:Magician
+}
