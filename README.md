@@ -57,6 +57,7 @@
 通过RDFS也可以声明一个子类：
 
 >熊 rdf:type rdfs:Class
+
 >熊 rdfs:subClassOf 哺乳动物
 
 或者声明一个实例
@@ -86,11 +87,13 @@ RDF，RDFS/OWL属于语义网技术栈，它们的提出，使得语义网克服
 上一篇文章中，我们用平实的语言给出了知识图谱的定义和组织形式。用更正式的说法，知识图谱是由本体（Ontology）作为Schema层，和RDF数据模型兼容的结构化数据集。本体本身是个哲学名词，AI研究人员于上个世纪70年代引入计算机领域。Tom Gruber把本体定义为“概念和关系的形式化描述”，分别指实体的类层次和关系层次。我们以上篇文章罗纳尔多知识图为例，我们用IRI唯一标志的节点都是某个类的一个实例，每一条边都表示一个关系。罗纳尔多是一个人，里约热内卢是一个地点，我们用RDF来表示就是：
 
 >www.kg.com/person/1 rdf:type kg:Person.
+
 >www.kg.com/place/10086 rdf:type kg:Place.
 
 关系我们也称为属性（Property），根据是实体和实体之间的关系还是实体和数据值之间的关系分为对象属性（Object Property）和数据属性（Data Property）。在图中，罗纳尔多和里约热内卢的关系（本例中是对象属性）与罗纳尔多和全名的关系（本例中是数据属性）用RDF就可以表示为：
 
 >www.kg.com/person/1 kg:hasBirthPlace www.kg.com/place/10086
+
 >www.kg.com/person/1 kg:fullName "Ronaldo Luís Nazário de Lima"^^xsd:string
 
 这里kg:Person，kg:Place，kg:hasBirthPlace，kg:fullName是我们在Ontology中定义好的类和关系。
