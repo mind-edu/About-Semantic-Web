@@ -8,6 +8,8 @@
 
 - [CodeWisdom平台API知识图谱服务系统全新上线了](https://mp.weixin.qq.com/s/8ReWM8AcN170LA8o6zjrsw)
 
+- [知识图谱-给AI装个大脑](https://zhuanlan.zhihu.com/knowledgegraph)
+
 - [https://open-services.net/](https://open-services.net/)
 
 相关软件：
