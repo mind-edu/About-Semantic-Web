@@ -256,17 +256,7 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 我在使用相同的标识符，所以如果我混合来自此文件的数据和我已使用的数据，我会连接这两个图形。原始文件原封不动，但这个添加到用于查询的模型中的额外元组，会通过 foaf:knows 关系将 Brian 的节点连接到 Michael 的节点。我可以询问的查询变得更加有趣，如清单 5 所示。
 
 清单 5. 查询链接的图形模式
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
+```
 PREFIX ex: <http://example.com/ns/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
  
@@ -278,34 +268,23 @@ WHERE {
   ?magician a ex:Magician ;
      foaf:name ?name .
 }
+```
 在清单 5 中，我有两个由 magician 变量链接的不同的图形模式。我会说，“告诉我任何 (?s) 名叫 Brian Sletten 的人，这个人需要知道某个是 ex:Magician 类的实例 (?magician) 的人。另外，获取另一个人的姓名。”没有来自 knows.ttl 文件的元组，此查询就无法返回任何结果。但是，如果我将它包含在我的运行时模型中，就会出现奇：
 
-1
-2
-3
-4
-5
-6
+```
 > sparql --query complex.rq --data basic.ttl --data knows.ttl
 ------------------------------------------------------------
 | magician                            | name               |
 ============================================================
 | <https://w3id.org/people/mcarducci> | "Michael Carducci" |
 ------------------------------------------------------------
+```
+
 查询远程数据
 您刚看到了积累来自各种文件的数据的好处，这也适用于可进行 Web 寻址的资源。但是，在这里我会给您出一个难题。还记得在 上一篇文章 中，我使用了一个来自 W3ID 社区的标识符来引用我自己吗？如果您请求该资源，像清单 6 中一样，将会发生什么？
 
 清单 6. 请求 W3ID 资源的查询
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
+```
 > http get https://w3id.org/people/bsletten
 HTTP/1.1 303 See Other
 Access-Control-Allow-Origin: *
@@ -316,37 +295,12 @@ Location: http://bosatsu.net/foaf/brian.rdf
 Server: Apache/2.4.7 (Ubuntu)
  
 ...
+```
+
 我在清单 6 中省略了 HTML 正文，因为它的含义从标头中很容易明白。303 See Other 响应包含一个 Location 标头，它指向一个将包含我的更多信息的文件。我无法序列化，但文档可以。当我请求该文档时，如清单 7 中一样，您会看到一些有趣的事情。
 
 清单 7. 请求 W3ID 资源的查询
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
+```
 > http get http://bosatsu.net/foaf/brian.rdf
  
 HTTP/1.1 200 OK
@@ -375,6 +329,8 @@ Server: Apache/2.2.16 (Debian)
   </foaf:Person>
   ...
 </rdf:RDF>
+```
+
 RDF 生态系统
 SPARQL 查询是一种查询完全不同的数据的强大而又有效的方式，尤其在使用扩大了 RDF 数据范围的支持性技术时。
 
@@ -389,16 +345,7 @@ D2RQ 等工具或支持 R2RML 标准的工具可包装 RDBMS 数据库。
 但是，不要忘这种思路的更大背景。我为自己提供的稳定的标识符 303-重定向到一个描述我的文档（使用同一个标识符）。一个理解 Web 重定向的 SPARQL 客户端（它们大部分都理解）将解决所有这些问题。所以，在命令行上添加一个对我的引用，也会添加（在跟随重定向后）我公开宣传的有关我自己的所有信息。现在您可连接 3 个不同的数据集并询问问题：“告诉我任何知道一位名叫 Michael Carducci 的魔术师的人的兴趣。”这些兴趣来自这个新重定向的 RDF 文件。这个新查询类似于清单 8。
 
 清单 8. 链接 3 个资源的查询
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
+```
 PREFIX ex: <http://example.com/ns/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
  
@@ -409,20 +356,11 @@ SELECT ?interest WHERE {
   ?magician a ex:Magician ;
      foaf:name "Michael Carducci" .
 }
+```
 清单 9 显示了结果。
 
 清单 9. 来自清单 8 的查询的结果
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
+```
 > sparql --query interests.rq --data basic.ttl --data knows.ttl --data https://w3id.org/people/bsletten
 -----------------------------------------------
 | interest                                    |
@@ -434,27 +372,26 @@ SELECT ?interest WHERE {
 | <http://www.w3.org/Metadata/>               |
 | <http://www.w3.org/RDF/>                    |
 -----------------------------------------------
-“您可询问的查询的复杂性与您拥有的数据的复杂性直接相关。”
+```
+
+> “您可询问的查询的复杂性与您拥有的数据的复杂性直接相关。”
 
 发生了许多事情。basic.ttl 中的元组建立了一些有关 Michael 和我的简单事实。来自 knows.ttl 文件的单一事实捕获了我知道的 Michael 的事实，并将 basic.ttl 文件中的两个（平时未连接的）图形连接在一起。最后，我在支持我的 W3ID 标识符的 FOAF 文件中发布的数据表达了我的一些兴趣（以及其他趣闻）。清单 8 中的查询之所有有效，离不开从所有这 3 种来源提供的链接。您可询问的查询的复杂性与您拥有的数据的复杂性直接相关。请记住，您可获取数据，然后向它询问它所提及的内容，涉及的属性等。
 
-SPARQL 协议
+## SPARQL 协议
 当 SPARQL 客户端解析和运行查询时，它首先通过 HTTP 抓取数据，并将这些数据拉入到引擎中。这很有趣，因为数据始终是新鲜的，是从来源拉取的。如果来源数据更改，下一次您运行查询时，就会获得更新。但是，对于大型数据集，每次运行查询时拉取的信息量可能无法控制，尤其在您仅需要结果图形的一小部分时。为了帮助解决这个问题，SPARQL 协议 允许您对任何支持一些少量约定的远程服务器运行查询。这里仅重点介绍一种服务器。
 
 如果服务器支持使用 GET 模式来运行 SPARQL 查询，它将接受作为参数传递的查询的 URL 编码格式。这是我在 我的面向资源的模式图书 中所称的命名查询模式 (Named Query Pattern) 的一个例子。客户端通过只请求它感兴趣的信息，为这些信息创建一个信息资源（而不是由服务器发布一个指定的资源）。获取查询：
 
-1
-2
-3
-4
-5
-6
+```
 PREFIX ex: <http://example.com/ns/>
  
 DESCRIBE ?s
 WHERE {
   ?s a ex:Magician
 }
+```
+
 前面的查询将转换为一个对 http://example.com/sparql?query=PREFIX%20ex%3A%20%26lt%3Bhttp%3A%2F%2Fexample.com%2Fns%2F%26gt%3B%0A%0ADESCRIBE%20%3Fs%0AWHERE%20%7B%0A%20%20%3Fs%20a%20ex%3AMagician%0A%7D 的请求，您可以向该资源发出一个 GET 请求。结果集通常可序列化为 SPARQL 结果集格式的 XML、JSON 或 CSV 表示。但是，查询的仍是一个信息资源，可以共享、加入书签，甚至缓存（例如，如果服务器指定可使用缓存控件）。
 
 考虑这里实际发生的事情。无需为我拉入数据，我将查询推送到数据所在的服务器。此功能可为大型数据集节省大量带宽。但是，这种节省并不是有利无害。允许任意客户端推动在您服务器上执行的任意查询，可能风险太大。幸运的是，这些客户端驱动的资源仍然只是信息资源，可由您想要部署的任何身份验证和授权系统来保护。（一个叫做 Linked Data Fragments 的计划正在努力定义标准，以允许客户发出轻量型查询来实现与使用 SPARQL 协议相同的结果。）
@@ -463,14 +400,7 @@ WHERE {
 
 我最后的例子将展示如何以最少的努力释放前所未有的威力。如果您为资源标识符、属性、类等使用与我不同的术语，我可以使用我的术语为您的数据创建一个子图形，方法是请求该数据并将它推送到您的 SPARQL 协议端点。不需要无止境地举行徒劳的会议来试图达成一致。如果您将某个东西称为 ex:author 来表示作者，并且我希望使用更广泛使用的 Dublin Core http://purl.org/dc/terms/creator，我可输入以下查询：
 
-1
-2
-3
-4
-5
-6
-7
-8
+```
 PREFIX ex: <http://example.com/ns/>
 PREFIX dct: <http://purl.org/dc/terms/>
  
@@ -479,17 +409,11 @@ CONSTRUCT {
 } WHERE {
   ?x ex:author ?y .
 }
+```
 然后通过 http://example.com/sparql?query=PREFIX%20ex%3A%20%3Chttp%3A%2F%2Fexample.com%2Fns%2F%3E%0APREFIX%20dct%3A%20%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%0A%0ACONSTRUCT%20%7B%0A%20%20%3Fx%20dct%3Acreator%20%3Fy%20.%0A%7D%20WHERE%20%7B%0A%20%20%3Fx%20ex%3Aauthor%20%3Fy%20.%0A%7D 将该查询推送到您的服务器。请记住，CONSTRUCT 查询（比如 DESCRIBE 查询）生成的是 RDF 图形，而不是结果集。所以，我随后可以直接在客户端上查询 SPARQL 协议资源，如清单 10 所示。
 
 清单 10. 直接从客户端查询 SPARQL 协议资源
-1
-2
-3
-4
-5
-6
-7
-8
+```
 PREFIX dct: <http://purl.org/dc/terms/>
  
 SELECT ?creator
@@ -498,9 +422,11 @@ FROM some local file or data
 WHERE {
   ?x dct:creator ?creator .
 }
+```
 我通过网络动态地获取您的数据，并以我想要看到它的形式来对您的数据进行整形，而不特别关注数据最终是如何生成或存储的（它可以是一个 RDBMS），然后将它连接到我的数据，而不一定需要与您协调（除了获取对 SPARQL 协议端点的访问权）。
 
 在下一期讨论 Linked Data 时，您会看到使用 SPARQL 协议的一些有趣示例。
 
-结束语
+## 结束语
+
 在本系列中，目前为止，您了解了一种灵活的标准数据模型，它使您始终能获得新事实，并以极少的工作轻松地与新数据来源集成。您现在还看到了如何跨数据来源运行查询，而无需考虑底层实现细节 — 通过使用标准标识符、标准模型和一种标准查询语言为通过网络询问任意领域的任意问题。在下一期文章中，将在这些想法的基础上，探索 Linked Data 和 Linked Data Platform。
