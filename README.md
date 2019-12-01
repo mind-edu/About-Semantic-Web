@@ -8,6 +8,8 @@
 
 - [CodeWisdom平台API知识图谱服务系统全新上线了](https://mp.weixin.qq.com/s/8ReWM8AcN170LA8o6zjrsw)
 
+- [https://open-services.net/](https://open-services.net/)
+
 相关软件：
 
 - [Protege](https://protege.stanford.edu/) 本体编辑器
