@@ -12,6 +12,8 @@
 
 - [https://open-services.net/](https://open-services.net/)
 
+- 【语义网国际会议网址】(http://iswc.net)
+
 相关软件：
 
 - [Protege](https://protege.stanford.edu/) 本体编辑器
